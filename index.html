@@ -280,7 +280,7 @@
     .add-btn:disabled { background:#d0ccc8; color:#888; cursor:not-allowed; box-shadow:none; }
 
     /* ─── STOCK ───────────────────────────────────────────────── */
-    .stock-indicator { display:block; }
+    .stock-indicator { display:none; }
     .stock-badge {
       display:inline-flex; align-items:center; gap:.2rem;
       font-size:.62rem; font-weight:700; letter-spacing:.02em;
@@ -628,27 +628,15 @@
       💬 Consultar por WhatsApp
     </a>
   </div>
-  <!-- Trust strip: resuelve objeciones rápido -->
-  <div class="hero-trust">
-    <span class="trust-item"><span>📦</span> Sin registro</span>
-    <span class="trust-item"><span>📅</span> 4 días a la semana</span>
-    <span class="trust-item"><span>💳</span> Efectivo o transferencia</span>
-    <span class="trust-item"><span>❄️</span> Productos congelados</span>
-  </div>
+
 </section>
 
 <!-- ═══ COBERTURA ═════════════════════════════════════════════ -->
-<!-- NUEVO: responde "¿llegás hasta acá?" sin que tengan que buscar -->
 <div class="coverage">
-  <div class="coverage-inner">
-    <span class="coverage-label">📍 Entregamos en</span>
-    <div class="zone-chips">
-      <span class="zone-chip"><span class="zone-chip-dot"></span>Estancias del Pilar</span>
-      <span class="zone-chip"><span class="zone-chip-dot"></span>Estancias del Río</span>
-      <span class="zone-chip"><span class="zone-chip-dot"></span>Los Alcanfores</span>
-      <a href="https://wa.me/5491155038905?text=Hola%20Maleu%2C%20%C2%BFhacen%20delivery%20en%20mi%20zona%3F"
-         target="_blank" class="zone-chip zone-chip-ask">¿Mi zona? Consultá →</a>
-    </div>
+  <div class="coverage-inner" style="justify-content:center;text-align:center">
+    <span style="font-size:.88rem;color:var(--brown);font-weight:600">
+      📍 Mandanos tu dirección y te dejamos tu pedido en la puerta de tu casa
+    </span>
   </div>
 </div>
 
@@ -732,17 +720,10 @@
         <!-- NUEVO: zona antes de dirección para ayudar a Maleu a organizar el recorrido -->
         <div class="form-row form-row-2">
           <div class="field-group">
-            <label for="f-zona">Zona</label>
-            <div class="select-wrapper">
-              <select id="f-zona" onblur="validateOnBlur('zona')">
-                <option value="">Seleccioná tu zona</option>
-                <option value="Estancias del Pilar">Estancias del Pilar</option>
-                <option value="Estancias del Río">Estancias del Río</option>
-                <option value="Los Alcanfores">Los Alcanfores</option>
-                <option value="Otra zona">Otra zona (consultar)</option>
-              </select>
-            </div>
-            <span class="field-error" id="err-zona">⚠ Elegí tu zona</span>
+            <label for="f-zona">Barrio Privado</label>
+            <input type="text" id="f-zona" placeholder="Ej: Estancias del Pilar, Los Robles..."
+                   autocomplete="off" onblur="validateOnBlur('zona')">
+            <span class="field-error" id="err-zona">⚠ Completá tu barrio</span>
           </div>
           <div class="field-group">
             <label for="f-dia">Día de entrega</label>
@@ -751,8 +732,6 @@
                 <option value="">Elegí un día</option>
                 <option value="Miércoles">Miércoles</option>
                 <option value="Viernes">Viernes</option>
-                <option value="Sábado">Sábado</option>
-                <option value="Domingo">Domingo</option>
               </select>
             </div>
             <p class="horario-hint" id="horario-hint"></p>
@@ -815,16 +794,14 @@
   <p class="footer-tag">Rico, listo, sin drama.</p>
   <div class="footer-cols">
     <div class="footer-col">
-      <div class="footer-col-label">Zona de cobertura</div>
-      <p>Estancias del Pilar<br>Estancias del Río<br>Barrio Los Alcanfores<br>y zona norte, Pilar</p>
+      <div class="footer-col-label">Cobertura</div>
+      <p>Te dejamos el pedido en la puerta de tu casa.<br>Mandanos tu dirección y coordinamos.</p>
     </div>
     <div class="footer-col">
       <div class="footer-col-label">Días de entrega</div>
       <table class="hours-table">
-        <tr><td>Miércoles</td><td>19 a 21 hs</td></tr>
-        <tr><td>Viernes</td>  <td>19 a 21 hs</td></tr>
-        <tr><td>Sábado</td>   <td>19 a 21 hs</td></tr>
-        <tr><td>Domingo</td>  <td>11 a 13 hs</td></tr>
+        <tr><td>Miércoles</td><td>A coordinar</td></tr>
+        <tr><td>Viernes</td>  <td>A coordinar</td></tr>
       </table>
     </div>
     <div class="footer-col">
@@ -900,7 +877,7 @@ const CATEGORIAS = [
   { nombre:"Postres & Tortas", icono:"🎂", nota:"Para cerrar bien la noche",                                                   tip:null },
 ];
 
-const HORARIOS = { "Miércoles":"19 a 21 hs", "Viernes":"19 a 21 hs", "Sábado":"19 a 21 hs", "Domingo":"11 a 13 hs" };
+const HORARIOS = { "Miércoles":"A coordinar", "Viernes":"A coordinar" };
 const WA_NUMBER       = "5491155038905";
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby7HR-op6KSz2a-B2Dvloua6sJ63tsUmkEOWJACqQHAHeG8hOZ3a5HCNjiljjTpWSs/exec";
 const STOCK_CSV_URL   = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRU90rLSsMLIZysclthumNVS-wWma0g0ugJJlUBkO_lk1e_xhjmoIbqpmPFpTSVdYkyI1rk4BUCJyrd/pub?gid=0&single=true&output=csv";
@@ -1208,7 +1185,7 @@ function enviarPedido() {
     _sep, EM.m + '%20*TOTAL%3A%20' + enc(total) + '*', _sep,
     '',
     EM.u + '%20*Nombre%3A*%20'     + enc(nombre),
-    EM.g + '%20*Zona%3A*%20'       + enc(zona),
+    EM.g + '%20*Barrio%3A*%20'      + enc(zona),
     EM.n + '%20*Direcci%C3%B3n%3A*%20' + enc(direccion),
     EM.t + '%20*Tel%3A*%20'        + enc(telefono),
     EM.c + '%20*Entrega%3A*%20'    + enc(dia) + '%20%C2%B7%20' + enc(horario),
@@ -1247,7 +1224,7 @@ function enviarPedido() {
     cart = {};
     updateUI();
     PRODUCTOS.forEach(p => renderCardFooter(p.id));
-    ['f-nombre','f-telefono','f-direccion','f-obs'].forEach(id => { const el=$id(id); if(el) el.value=''; });
+    ['f-nombre','f-telefono','f-zona','f-direccion','f-obs'].forEach(id => { const el=$id(id); if(el) el.value=''; });
     $id('f-dia').value = ''; onDiaChange();
     document.querySelectorAll('input[name="pago"]').forEach(r => r.checked=false);
     if (waBtn) { waBtn.disabled=false; waBtn.innerHTML=origHTML; }
